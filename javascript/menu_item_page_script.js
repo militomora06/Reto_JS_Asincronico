@@ -81,10 +81,24 @@ function updateFavoritesList() {
 
   for (const [id, name] of Object.entries(favorites)) {
     const li = document.createElement("li");
-    li.textContent = name;
+    const img = document.createElement("img");
+    img.src = "/images/star.webp";
+    img.alt = "Favorite";
+    img.style.width = "20px";
+    img.style.height = "20px";
+    li.appendChild(img);
+    li.appendChild(document.createTextNode(name));
     li.setAttribute("data-id", id);
 
     li.addEventListener("click", () => fetchFavoriteCocktail(id));
+
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Eliminar";
+    removeButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      removeFromFavorites(id);
+    });
+    li.appendChild(removeButton);
 
     favoritesList.appendChild(li);
   }
@@ -104,6 +118,13 @@ async function fetchFavoriteCocktail(cocktailId) {
   } finally {
     showLoader(false);
   }
+}
+
+function removeFromFavorites(cocktailId) {
+  const favorites = getFavorites();
+  delete favorites[cocktailId];
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  updateFavoritesList();
 }
 
 document.addEventListener("DOMContentLoaded", updateFavoritesList);
