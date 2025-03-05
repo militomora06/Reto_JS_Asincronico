@@ -13,7 +13,7 @@ body {
   flex-direction: column;
   margin: 0;
   align-items: center;
-  background-color: black;
+  background-color: orangered;
   gap: 1rem;
 }
 
@@ -33,7 +33,7 @@ header h1 {
   font-size: 3rem;
   background-clip: text;
   color: transparent;
-  background-image: linear-gradient(50deg, #ff1616, #ff1616);
+  background-image: linear-gradient(50deg, black, #262626);
   background-color: rgba(255, 255, 255, 0.8);
   padding: 0.5rem 1rem;
   border-radius: 5px;
